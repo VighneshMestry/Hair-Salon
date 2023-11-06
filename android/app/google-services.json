@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "997529439513",
+    "project_id": "hair-salon-85cab",
+    "storage_bucket": "hair-salon-85cab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:997529439513:android:53df8fe299037b6463c988",
+        "android_client_info": {
+          "package_name": "com.example.hair_salon"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3x86dVKw_9_IX68uUJheAUy6RG7_Nma4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
