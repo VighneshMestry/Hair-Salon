@@ -1,6 +1,7 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:hair_salon/utils/textarea.dart';
+import 'package:hair_salon/auth/provider/auth_provider.dart';
+import 'package:provider/provider.dart';
 
 enum PasswordScreen {
   show,
@@ -16,7 +17,6 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController phoneController = TextEditingController();
-  final TextEditingController otpController = TextEditingController();
   PasswordScreen _passwordScreen = PasswordScreen.hide;
   Country country = Country(
     phoneCode: "91",
@@ -38,12 +38,23 @@ class _LoginScreenState extends State<LoginScreen> {
         body: SingleChildScrollView(
           child: Column(
             children: [
+              // const Padding(
+              //   padding: EdgeInsets.only(left: 350, top: 20),
+              //   child: Text(
+              //     "SKIP",
+              //     style: TextStyle(
+              //         color: Colors.red, decoration: TextDecoration.underline),
+              //   ),
+              // ),
               const Padding(
-                padding: EdgeInsets.only(left: 350, top: 20),
-                child: Text(
-                  "SKIP",
-                  style: TextStyle(
-                      color: Colors.red, decoration: TextDecoration.underline),
+                padding: EdgeInsets.all(8.0),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Text(
+                    "SKIP",
+                    style: TextStyle(
+                        color: Colors.red, decoration: TextDecoration.underline),
+                  ),
                 ),
               ),
               Image.asset(
@@ -144,9 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           width: 320,
                           child: ElevatedButton(
                             onPressed: () {
-                              setState(() {
-                                _passwordScreen = PasswordScreen.show;
-                              });
+                              sendPhoneNumber();
                             },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor:
@@ -192,101 +201,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-
-              if (_passwordScreen == PasswordScreen.show)
-                Container(
-                  margin: const EdgeInsets.all(10),
-                  height: 350,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      border:
-                          Border.all(width: 1.0, color: Colors.grey.shade300)),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        left: 12, right: 12, top: 12, bottom: 12),
-                    child: Column(
-                      children: [
-                        Image.asset('assets/lockLogo.png'),
-                        const SizedBox(height: 45),
-                        SizedBox(
-                          width: 350,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: CustomTextField(
-                                controller: otpController,
-                                hintText: "Enter your OTP"),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        TextButton(
-                          onPressed: () {},
-                          child: const Text(
-                            "Resend code in 55 s",
-                            style: TextStyle(color: Colors.red),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        SizedBox(
-                          height: 50,
-                          width: 320,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              setState(() {
-                                _passwordScreen = PasswordScreen.hide;
-                              });
-                            },
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    const Color.fromARGB(255, 27, 78, 165),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                )),
-                            child: const Text(
-                              "CONTINUE",
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 18,
-                        ),
-                        RichText(
-                            text: const TextSpan(children: [
-                          TextSpan(
-                              text: "By continuing you are agreeing to our \n",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w400)),
-                          TextSpan(
-                              text: "Terms & Conditions ",
-                              style: TextStyle(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.w400)),
-                          TextSpan(
-                              text: "and ",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w400)),
-                          TextSpan(
-                              text: "Privacy Policy",
-                              style: TextStyle(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.w400)),
-                        ]))
-                      ],
-                    ),
-                  ),
-                ),
             ],
           ),
         ),
       ),
     );
   }
+
+  void sendPhoneNumber () {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    String phoneNumber = phoneController.text.trim();
+    authProvider.signInWithPhone(context, "+${country.phoneCode}$phoneNumber");
+  }
+
 }
