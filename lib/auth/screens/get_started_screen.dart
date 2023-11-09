@@ -16,7 +16,9 @@ class GetStarted extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              const SizedBox(height: 70,),
+              const SizedBox(
+                height: 70,
+              ),
               Image.asset(
                 'assets/hairSalon.png',
                 height: 340,
@@ -26,20 +28,24 @@ class GetStarted extends StatelessWidget {
                 height: 50,
                 width: 320,
                 child: ElevatedButton(
-                  onPressed: () {
-                    authProvider.isSignIn == true  // When true we will fetch the shred preferences data
-                        ? Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const HomeScreen(),
+                  onPressed: () async {
+                    if (authProvider.isSignIn == true) {
+                      await authProvider.getUserDataFromSP().whenComplete(
+                            () => Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const HomeScreen(),
+                              ),
                             ),
-                          )
-                        : Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const LoginScreen(),
-                            ),
-                          );
+                           );
+                    } else {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginScreen(),
+                        ),
+                      );
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 27, 78, 165),
