@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hair_salon/auth/models/user_model.dart';
+import 'package:hair_salon/models/user_model.dart';
 import 'package:hair_salon/auth/provider/auth_provider.dart';
 import 'package:hair_salon/home/screens/home_screen.dart';
 import 'package:hair_salon/utils/utils.dart';
