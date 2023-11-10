@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hair_salon/auth/provider/auth_provider.dart';
 import 'package:hair_salon/auth/screens/get_started_screen.dart';
 import 'package:hair_salon/widgets/carousel.dart';
+import 'package:hair_salon/widgets/featured_services.dart';
 import 'package:provider/provider.dart';
 import 'package:searchbar_animation/const/dimensions.dart';
 import 'package:searchbar_animation/searchbar_animation.dart';
@@ -135,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 10),
             const CarouselImages(),
             const SizedBox(height: 10),
-            const Text("Featured Services"),
+            const FeaturedServices(),
 
           ],
         ),
