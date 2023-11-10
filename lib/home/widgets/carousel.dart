@@ -28,6 +28,7 @@ class _CarouselImagesState extends State<CarouselImages> {
                       e,
                       fit: BoxFit.cover,
                       // height: 220,
+                      width: MediaQuery.of(context).size.width - 20,
                     ),
                   ),
                 ),

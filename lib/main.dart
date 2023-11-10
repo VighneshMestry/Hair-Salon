@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hair_salon/auth/screens/get_started_screen.dart';
 import 'package:hair_salon/firebase_options.dart';
 import 'package:hair_salon/auth/provider/auth_provider.dart';
+import 'package:hair_salon/home/provider/home_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => HomeProvider())
       ],
       child: MaterialApp(
         title: 'Hair Salon',

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hair_salon/auth/provider/auth_provider.dart';
 import 'package:hair_salon/auth/screens/get_started_screen.dart';
-import 'package:hair_salon/widgets/carousel.dart';
-import 'package:hair_salon/widgets/featured_services.dart';
+import 'package:hair_salon/home/provider/home_provider.dart';
+import 'package:hair_salon/home/widgets/carousel.dart';
+import 'package:hair_salon/home/widgets/featured_services.dart';
 import 'package:provider/provider.dart';
 import 'package:searchbar_animation/const/dimensions.dart';
 import 'package:searchbar_animation/searchbar_animation.dart';
@@ -93,6 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Column(
           children: [
             Padding(
@@ -117,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Icons.search,
                           color: Colors.black,
                         ),
-                        searchBoxWidth: MediaQuery.of(context).size.width - 35,
+                        searchBoxWidth: MediaQuery.of(context).size.width - 40,
                         durationInMilliSeconds: Dimensions.t700,
                         // isSearchBoxOnRightSide: true,
                         onChanged: (value) {
@@ -128,16 +130,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                       ),
                     ),
-
                   ],
                 ),
               ),
             ),
             const SizedBox(height: 10),
             const CarouselImages(),
-            const SizedBox(height: 10),
+            const SizedBox(height: 30),
             const FeaturedServices(),
-
           ],
         ),
       ),

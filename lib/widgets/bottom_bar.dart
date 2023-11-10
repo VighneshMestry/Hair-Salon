@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hair_salon/account/screens/account_screen.dart';
+import 'package:hair_salon/admin/screens/upload_services.dart';
 import 'package:hair_salon/category/screens/category_screen.dart';
 import 'package:hair_salon/chat/screens/chat_screen.dart';
 import 'package:hair_salon/constants/global_variables.dart';
@@ -24,8 +25,7 @@ class _BottomBarState extends State<BottomBar> {
     const CategoryScreen(),
     const ScheduleScreen(),
     const ChatScreen(),
-    const AccountScreen(),
-    // const AccountScreen(),
+    const UploadServices(),
     // const CartScreen(),
   ];
 
