@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hair_salon/auth/provider/auth_provider.dart';
 import 'package:hair_salon/auth/screens/login_screen.dart';
-import 'package:hair_salon/home/screens/home_screen.dart';
 import 'package:hair_salon/widgets/bottom_bar.dart';
 
 import 'package:provider/provider.dart';
