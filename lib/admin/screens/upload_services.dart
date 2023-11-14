@@ -37,13 +37,15 @@ class _UploadServicesState extends State<UploadServices> {
   void uploadServices(ServiceModel service) async {
     final homeProvider = Provider.of<HomeProvider>(context, listen: false);
     try {
-      final url = await homeProvider
+      // Storing image to storage
+      await homeProvider
           .storeImagetoStorage(
               "serviceImage/${service.serviceName}", serviceImage[0])
           .then((value) {
         service.imageUrl = value;
       });
 
+      // Storing data to firebase
       await _firebaseFirestore
           .collection("Services")
           .add(service.toMap())

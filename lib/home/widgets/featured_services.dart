@@ -21,6 +21,7 @@ class _FeaturedServicesState extends State<FeaturedServices> {
 
   @override
   void initState() {
+    super.initState();
     getAllServices();
   }
 
