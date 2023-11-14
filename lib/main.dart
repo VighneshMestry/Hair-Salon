@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hair_salon/auth/screens/get_started_screen.dart';
-import 'package:hair_salon/auth/screens/login_screen.dart';
 import 'package:hair_salon/firebase_options.dart';
 import 'package:hair_salon/auth/provider/auth_provider.dart';
 import 'package:hair_salon/home/provider/home_provider.dart';

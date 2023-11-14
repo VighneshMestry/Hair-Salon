@@ -19,16 +19,10 @@ class _OtpScreenState extends State<OtpScreen> {
   String? otp;
   @override
   Widget build(BuildContext context) {
-    final isLoading =
-        Provider.of<AuthProvider>(context, listen: false).isLoading;
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
-          child: isLoading == true
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
-              : Column(
+          child: Column(
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(8.0),
