@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:hair_salon/home/provider/home_provider.dart';
+import 'package:hair_salon/features/home/provider/home_provider.dart';
 import 'package:hair_salon/models/services_model.dart';
 import 'package:hair_salon/utils/custom_button.dart';
 import 'package:hair_salon/utils/custom_textfield.dart';

@@ -1,7 +1,7 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:hair_salon/home/provider/home_provider.dart';
-import 'package:hair_salon/home/widgets/service_card.dart';
+import 'package:hair_salon/features/home/provider/home_provider.dart';
+import 'package:hair_salon/features/home/widgets/service_card.dart';
 import 'package:provider/provider.dart';
 
 class FeaturedServices extends StatefulWidget {
