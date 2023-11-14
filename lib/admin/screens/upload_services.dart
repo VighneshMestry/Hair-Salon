@@ -61,11 +61,10 @@ class _UploadServicesState extends State<UploadServices> {
     }
   }
 
-  uploadImagetoStorage() {}
-
   selectImages() async {
     var res = await pickImages();
     setState(() {
+      serviceImage.removeRange(0, serviceImage.length - 1);
       serviceImage.add(res);
     });
   }
@@ -101,16 +100,19 @@ class _UploadServicesState extends State<UploadServices> {
                   height: 20,
                 ),
                 serviceImage.isNotEmpty
-                    ? Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Image.file(
-                            serviceImage[0],
-                            fit: BoxFit.cover,
-                            height: 200,
+                    ? GestureDetector(
+                        onTap: selectImages,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Image.file(
+                              serviceImage[0],
+                              fit: BoxFit.cover,
+                              height: 200,
+                            ),
                           ),
                         ),
                       )

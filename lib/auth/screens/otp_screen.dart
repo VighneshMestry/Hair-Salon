@@ -3,6 +3,7 @@ import 'package:hair_salon/models/user_model.dart';
 import 'package:hair_salon/auth/provider/auth_provider.dart';
 import 'package:hair_salon/home/screens/home_screen.dart';
 import 'package:hair_salon/utils/utils.dart';
+import 'package:hair_salon/widgets/bottom_bar.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
 
@@ -200,7 +201,7 @@ class _OtpScreenState extends State<OtpScreen> {
                       (value) => Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const HomeScreen()),
+                              builder: (context) => const BottomBar()),
                           (route) => false),
                     ),
               );
