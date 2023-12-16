@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hair_salon/features/category/screens/category_screen.dart';
+import 'package:hair_salon/features/home/widgets/category_tile.dart';
 import 'package:hair_salon/widgets/bottom_bar.dart';
 
 class CategoryDisplay extends StatelessWidget {
@@ -25,122 +25,43 @@ class CategoryDisplay extends StatelessWidget {
                                           BottomBar(pageIndex: 1)));
                 },
                 style: OutlinedButton.styleFrom(side: BorderSide.none),
-                child: const Text("View All"),
+                child: const Text("View All", style: TextStyle(fontWeight: FontWeight.w800),),
               ),
             ],
           ),
           const SizedBox(height: 10),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  height: 100,
-                  width: 100,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.shade200,
-                        blurRadius: 8,
-                      )
-                    ],
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Image.asset("assets/haircut.png", fit: BoxFit.cover,),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  height: 100,
-                  width: 100,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.shade200,
-                        blurRadius: 8,
-                      )
-                    ],
-                  ),
-                  child: Image.asset("assets/makeup.png", fit: BoxFit.cover,),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  height: 100,
-                  width: 100,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.shade200,
-                        blurRadius: 8,
-                      )
-                    ],
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Image.asset("assets/straightening.png", fit: BoxFit.cover,),
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.all(10.0),
+              //   child: Container(
+              //     height: 100,
+              //     width: 100,
+              //     decoration: BoxDecoration(
+              //       boxShadow: [
+              //         BoxShadow(
+              //           color: Colors.grey.shade200,
+              //           blurRadius: 8,
+              //         )
+              //       ],
+              //       borderRadius: BorderRadius.circular(10),
+              //     ),
+              //     child: Image.asset("assets/haircut.png", fit: BoxFit.cover,),
+              //   ),
+              // ),
+              CategoryTile(imageUrl: "assets/haircut.png", categoryName: "HairCut"),
+              CategoryTile(imageUrl: "assets/makeup.png", categoryName: "Makeup"),
+              CategoryTile(imageUrl: "assets/straightening.png", categoryName: "Straightening"),
             ],
           ),
           const SizedBox(height: 30),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  height: 100,
-                  width: 100,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.shade200,
-                        blurRadius: 8,
-                      )
-                    ],
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Image.asset("assets/mani-pedi.png", fit: BoxFit.cover,),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  height: 100,
-                  width: 100,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.shade200,
-                        blurRadius: 8,
-                      )
-                    ],
-                  ),
-                  child: Image.asset("assets/spa.png", fit: BoxFit.cover,),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  height: 100,
-                  width: 100,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.shade200,
-                        blurRadius: 8,
-                      )
-                    ],
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Image.asset("assets/beard.png", fit: BoxFit.cover,),
-                ),
-              ),
+              CategoryTile(imageUrl: "assets/mani-pedi.png", categoryName: "Mani-Pedi"),
+              CategoryTile(imageUrl: "assets/spa.png", categoryName: "Spa"),
+              CategoryTile(imageUrl: "assets/beard.png", categoryName: "Beard Trimming"),
             ],
           ),
         ],

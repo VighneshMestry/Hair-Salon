@@ -4,6 +4,7 @@ import 'package:hair_salon/features/auth/screens/get_started_screen.dart';
 import 'package:hair_salon/features/home/widgets/carousel.dart';
 import 'package:hair_salon/features/home/widgets/category.dart';
 import 'package:hair_salon/features/home/widgets/featured_services.dart';
+import 'package:hair_salon/features/home/widgets/most_popular_services.dart';
 import 'package:provider/provider.dart';
 import 'package:searchbar_animation/const/dimensions.dart';
 import 'package:searchbar_animation/searchbar_animation.dart';
@@ -140,6 +141,8 @@ class _HomeScreenState extends State<HomeScreen> {
             const FeaturedServices(),
             const SizedBox(height: 30),
             const CategoryDisplay(),
+            const SizedBox(height: 30),
+            const MostPopularServices(),
           ],
         ),
       ),

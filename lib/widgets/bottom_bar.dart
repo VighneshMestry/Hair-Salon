@@ -9,7 +9,7 @@ import 'package:hair_salon/features/home/screens/home_screen.dart';
 import 'package:hair_salon/features/schedule/screens/schedule_screen.dart';
 
 class BottomBar extends StatefulWidget {
-  var pageIndex;
+  final pageIndex;
   BottomBar({
     Key? key,
    this.pageIndex = 0,

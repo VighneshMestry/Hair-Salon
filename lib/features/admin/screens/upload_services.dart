@@ -24,6 +24,8 @@ class _UploadServicesState extends State<UploadServices> {
   final TextEditingController originalPriceController = TextEditingController();
   final TextEditingController discountedPriceController =
       TextEditingController();
+  final TextEditingController locationController = TextEditingController();
+  final TextEditingController ratingController = TextEditingController();
   List<File> serviceImage = [];
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
@@ -34,6 +36,19 @@ class _UploadServicesState extends State<UploadServices> {
     originalPriceController.dispose();
     discountedPriceController.dispose();
   }
+
+  String category = "Hair Cut";
+  List<String> categories = [
+    "Hair Cut",
+    "Makeup",
+    "Straightening",
+    "Mani-Pedi",
+    "Spa",
+    "Beard Trimming",
+    "Hair Coloring",
+    "Waxing",
+    "Facial"
+  ];
 
   void uploadServices(ServiceModel service) async {
     final homeProvider = Provider.of<HomeProvider>(context, listen: false);
@@ -102,18 +117,18 @@ class _UploadServicesState extends State<UploadServices> {
                 ),
                 serviceImage.isNotEmpty
                     ? Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Image.file(
-                          serviceImage[0],
-                          fit: BoxFit.cover,
-                          height: 200,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
                         ),
-                      ),
-                    )
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.file(
+                            serviceImage[0],
+                            fit: BoxFit.cover,
+                            height: 200,
+                          ),
+                        ),
+                      )
                     : GestureDetector(
                         onTap: selectImages,
                         child: DottedBorder(
@@ -180,12 +195,44 @@ class _UploadServicesState extends State<UploadServices> {
                 const SizedBox(
                   height: 10,
                 ),
+                CustomTextField(
+                    controller: locationController, hintText: "Enter Location"),
+                const SizedBox(
+                  height: 10,
+                ),
+                CustomTextField(
+                    controller: ratingController, hintText: "Enter rating"),
+                const SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: DropdownButton(
+                      value: category,
+                      icon: const Icon(Icons.keyboard_arrow_down),
+                      items: categories.map((String item) {
+                        return DropdownMenuItem(
+                          value: item,
+                          child: Text(item),
+                        );
+                      }).toList(),
+                      onChanged: (String? newVal) {
+                        setState(() {
+                          category = newVal!;
+                        });
+                      },
+                    ),
+                  ),
+                ),
                 CustomButton(
                   text: 'Add Service',
                   onTap: () {
                     ServiceModel serviceModel = ServiceModel(
                       serviceName: serviceNameController.text.trim(),
                       description: descriptionController.text.trim(),
+                      category: category,
+                      location: locationController.text.trim(),
+                      rating: int.parse(ratingController.text.trim()),
                       originalPrice: originalPriceController.text.trim(),
                       discountedPrice: discountedPriceController.text.trim(),
                       imageUrl: serviceImage.first.path,
