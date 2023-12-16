@@ -1,4 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:hair_salon/constants/global_variables.dart';
 import 'package:hair_salon/features/admin/screens/upload_services.dart';
 import 'package:hair_salon/features/category/screens/category_screen.dart';
@@ -7,7 +9,11 @@ import 'package:hair_salon/features/home/screens/home_screen.dart';
 import 'package:hair_salon/features/schedule/screens/schedule_screen.dart';
 
 class BottomBar extends StatefulWidget {
-  const BottomBar({super.key});
+  var pageIndex;
+  BottomBar({
+    Key? key,
+   this.pageIndex = 0,
+  }) : super(key: key);
 
   @override
   State<BottomBar> createState() => _BottomBarState();
@@ -31,6 +37,13 @@ class _BottomBarState extends State<BottomBar> {
     setState(() {
       _page = page;
     });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    updatePage(widget.pageIndex);
+    super.initState();
   }
 
   final _scaffoldKey = GlobalKey<ScaffoldState>();

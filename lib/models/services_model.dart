@@ -5,12 +5,16 @@ class ServiceModel {
   final String serviceName;
   final String originalPrice;
   final String discountedPrice;
+  final String description;
+  // apponitments
+  // category
   String imageUrl;
 
   ServiceModel({
     required this.serviceName,
     required this.originalPrice,
     required this.discountedPrice,
+    required this.description,
     required this.imageUrl,
   });
 
@@ -20,7 +24,8 @@ class ServiceModel {
       serviceName: map["serviceName"] ?? ' ',
       originalPrice: map["originalPrice"] ?? ' ',
       discountedPrice: map["discountedPrice"] ?? ' ',
-      imageUrl: map["imageUrl"] ?? ' ',
+      imageUrl: map["imageUrl"] ?? ' ', 
+      description: map["description"] ?? ' ',
     );
   }
 
@@ -33,6 +38,7 @@ class ServiceModel {
       originalPrice: data["originalPrice"],
       discountedPrice: data["discountedPrice"],
       imageUrl: data["imageUrl"],
+      description: data["description"],
     );
   }
 
@@ -42,6 +48,7 @@ class ServiceModel {
       "originalPrice": originalPrice,
       "discountedPrice": discountedPrice,
       "imageUrl": imageUrl,
+      "description" : description
     };
   }
 }

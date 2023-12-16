@@ -20,6 +20,7 @@ class UploadServices extends StatefulWidget {
 class _UploadServicesState extends State<UploadServices> {
   final _addProductFormKey = GlobalKey<FormState>();
   final TextEditingController serviceNameController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
   final TextEditingController originalPriceController = TextEditingController();
   final TextEditingController discountedPriceController =
       TextEditingController();
@@ -64,7 +65,7 @@ class _UploadServicesState extends State<UploadServices> {
   selectImages() async {
     var res = await pickImages();
     setState(() {
-      serviceImage.removeRange(0, serviceImage.length - 1);
+      // serviceImage.removeRange(0, serviceImage.length - 1);
       serviceImage.add(res);
     });
   }
@@ -100,22 +101,19 @@ class _UploadServicesState extends State<UploadServices> {
                   height: 20,
                 ),
                 serviceImage.isNotEmpty
-                    ? GestureDetector(
-                        onTap: selectImages,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Image.file(
-                              serviceImage[0],
-                              fit: BoxFit.cover,
-                              height: 200,
-                            ),
-                          ),
+                    ? Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.file(
+                          serviceImage[0],
+                          fit: BoxFit.cover,
+                          height: 200,
                         ),
-                      )
+                      ),
+                    )
                     : GestureDetector(
                         onTap: selectImages,
                         child: DottedBorder(
@@ -161,6 +159,14 @@ class _UploadServicesState extends State<UploadServices> {
                   height: 10,
                 ),
                 CustomTextField(
+                  controller: descriptionController,
+                  hintText: 'Service Description',
+                  maxLines: 5,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                CustomTextField(
                   controller: originalPriceController,
                   hintText: 'Original Price',
                 ),
@@ -179,6 +185,7 @@ class _UploadServicesState extends State<UploadServices> {
                   onTap: () {
                     ServiceModel serviceModel = ServiceModel(
                       serviceName: serviceNameController.text.trim(),
+                      description: descriptionController.text.trim(),
                       originalPrice: originalPriceController.text.trim(),
                       discountedPrice: discountedPriceController.text.trim(),
                       imageUrl: serviceImage.first.path,

@@ -2,6 +2,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:hair_salon/features/home/provider/home_provider.dart';
 import 'package:hair_salon/features/home/widgets/service_card.dart';
+import 'package:hair_salon/features/home/widgets/service_details.dart';
 import 'package:provider/provider.dart';
 
 class FeaturedServices extends StatefulWidget {
@@ -73,9 +74,18 @@ class _FeaturedServicesState extends State<FeaturedServices> {
                     scrollDirection: Axis.horizontal,
                     itemCount: services.length,
                     itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(right: 15.0),
-                        child: ServiceCard(serviceModel: services[index]),
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          ServiceDetails(service: services[index])));
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 15.0),
+                          child: ServiceCard(
+                            serviceModel: services[index],
+                          ),
+                        ),
                       );
                     },
                   ),
