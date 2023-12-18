@@ -38,7 +38,7 @@ class CategoryTile extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            Text(categoryName, style: const TextStyle(fontWeight: FontWeight.w500)),
+            Text(categoryName, style: const TextStyle(fontWeight: FontWeight.w500), overflow: TextOverflow.ellipsis, maxLines: 1,),
           ],
         ),
       ),

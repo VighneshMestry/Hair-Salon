@@ -56,7 +56,7 @@ class _MostPopularServicesState extends State<MostPopularServices> {
           ListView.builder(
             shrinkWrap: true,
             scrollDirection: Axis.vertical,
-            // shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: services.length,
             itemBuilder: (context, index) =>
                 PopularServicesTile(service: services[index]),
