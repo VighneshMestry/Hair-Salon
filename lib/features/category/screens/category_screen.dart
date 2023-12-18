@@ -25,23 +25,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // Padding(
-              //   padding: const EdgeInsets.all(10.0),
-              //   child: Container(
-              //     height: 100,
-              //     width: 100,
-              //     decoration: BoxDecoration(
-              //       boxShadow: [
-              //         BoxShadow(
-              //           color: Colors.grey.shade200,
-              //           blurRadius: 8,
-              //         )
-              //       ],
-              //       borderRadius: BorderRadius.circular(10),
-              //     ),
-              //     child: Image.asset("assets/haircut.png", fit: BoxFit.cover,),
-              //   ),
-              // ),
               CategoryTile(
                   imageUrl: "assets/haircut.png", categoryName: "HairCut"),
               CategoryTile(
@@ -67,8 +50,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CategoryTile(
-                  imageUrl: "assets/haircoloring.png", categoryName: "Hair Coloring"),
-              CategoryTile(imageUrl: "assets/waxing.png", categoryName: "Waxing"),
+                  imageUrl: "assets/haircoloring.png",
+                  categoryName: "Hair Coloring"),
+              CategoryTile(
+                  imageUrl: "assets/waxing.png", categoryName: "Waxing"),
               CategoryTile(
                   imageUrl: "assets/facial.png", categoryName: "Facial"),
             ],

@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:hair_salon/features/category/screens/single_category_list.dart';
 
 class CategoryTile extends StatelessWidget {
   final String imageUrl;
@@ -14,7 +15,7 @@ class CategoryTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeScreen()));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => SingleCategoryList(category: categoryName)));
       },
       child: Padding(
         padding: const EdgeInsets.all(10.0),

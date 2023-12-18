@@ -11,9 +11,10 @@ class MostPopularServices extends StatefulWidget {
   State<MostPopularServices> createState() => _MostPopularServicesState();
 }
 
-List<ServiceModel> services = [];
+// List<ServiceModel> services = []; // If the list is declared here it can be used anywhere in the whole project
 
 class _MostPopularServicesState extends State<MostPopularServices> {
+  List<ServiceModel> services = [];
   void getAllServices() async {
     final homeProvider = Provider.of<HomeProvider>(context, listen: false);
     services = await homeProvider.getAllServices();
