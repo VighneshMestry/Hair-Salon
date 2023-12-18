@@ -14,7 +14,7 @@ class PopularServicesTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10), color: Colors.grey.shade100),
+          borderRadius: BorderRadius.circular(10), color: Colors.grey.shade50),
       height: 150,
       width: double.infinity,
       child: Row(
@@ -71,11 +71,11 @@ class PopularServicesTile extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 10),
-          const Align(
+          Align(
             alignment: Alignment.topRight,
             child: Padding(
-              padding: EdgeInsets.only(top: 15, right: 8, left: 8, bottom: 8),
-              child: Icon(Icons.bookmark_add_rounded),
+              padding: const EdgeInsets.only(top: 15, right: 8, left: 8, bottom: 8),
+              child: Icon(Icons.bookmark_add_rounded, color: Colors.red.shade400,),
             ),
           ),
         ],
