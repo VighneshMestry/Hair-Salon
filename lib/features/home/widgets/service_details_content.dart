@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:hair_salon/features/schedule/screens/schedule_screen.dart';
 
 import 'package:hair_salon/models/services_model.dart';
 import 'package:hair_salon/style.dart';
@@ -137,7 +138,9 @@ class ServiceDetailsContent extends StatelessWidget {
               height: 50,
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () async {},
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => ScheduleScreen(service: service)));
+                },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 27, 78, 165),
                     shape: RoundedRectangleBorder(
