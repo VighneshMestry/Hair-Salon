@@ -148,6 +148,7 @@ class AuthProvider extends ChangeNotifier {
         phoneNumber: documentSnapshot["phoneNumber"],
         uid: documentSnapshot["uid"],
         createdAt: documentSnapshot["createdAt"],
+        appointments: documentSnapshot["appointments"]
       );
       _uid = userModel.uid;
     });

@@ -1,8 +1,5 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-
 import 'package:hair_salon/features/schedule/bloc/state_bloc.dart';
-import 'package:hair_salon/features/schedule/bloc/state_provider.dart';
 import 'package:hair_salon/features/schedule/widgets/add_service_schedule.dart';
 import 'package:hair_salon/models/services_model.dart';
 
@@ -40,8 +37,8 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
 }
 
 class CarDetails extends StatelessWidget {
-  ServiceModel service;
-  CarDetails({
+  final ServiceModel service;
+  const CarDetails({
     Key? key,
     required this.service,
   }) : super(key: key);
@@ -61,78 +58,76 @@ class CarDetails extends StatelessWidget {
   }
 
   _carTitle(ServiceModel service) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          RichText(
-            text: TextSpan(
-              children: [
-                TextSpan(
-                  text: service.serviceName,
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 38,
-                      fontWeight: FontWeight.w800),
-                ),
-                const TextSpan(text: "\n"),
-                TextSpan(
-                  text: service.category,
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                      fontWeight: FontWeight.w800),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        RichText(
+          text: TextSpan(
             children: [
-              Text("Rs ${service.discountedPrice}",
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w800,
+              TextSpan(
+                text: service.serviceName,
+                style: const TextStyle(
                     color: Colors.white,
-                  )),
-              const SizedBox(width: 15),
-              Text(
-                "Rs ${service.originalPrice}",
+                    fontSize: 38,
+                    fontWeight: FontWeight.w800),
+              ),
+              const TextSpan(text: "\n"),
+              TextSpan(
+                text: service.category,
                 style: const TextStyle(
-                  fontWeight: FontWeight.w800,
-                  color: Colors.grey,
-                  decoration: TextDecoration.lineThrough,
-                ),
+                    color: Colors.white,
+                    fontSize: 30,
+                    fontWeight: FontWeight.w800),
               ),
             ],
           ),
-          const SizedBox(
-            height: 10,
-          ),
-          Row(
-            children: [
-              const Icon(
-                Icons.star_rounded,
-                color: Colors.amber,
-              ),
-              const SizedBox(width: 5),
-              Text(
-                service.rating.toString(),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Row(
+          children: [
+            Text("Rs ${service.discountedPrice}",
                 style: const TextStyle(
+                  fontWeight: FontWeight.w800,
                   color: Colors.white,
-                  fontWeight: FontWeight.w800,
-                ),
+                )),
+            const SizedBox(width: 15),
+            Text(
+              "Rs ${service.originalPrice}",
+              style: const TextStyle(
+                fontWeight: FontWeight.w800,
+                color: Colors.grey,
+                decoration: TextDecoration.lineThrough,
               ),
-              const SizedBox(width: 5),
-              Text(
-                "(With over 1k+ reviews)",
-                style: TextStyle(color: Colors.grey),
-              )
-            ],
-          )
-        ],
-      ),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Row(
+          children: [
+            const Icon(
+              Icons.star_rounded,
+              color: Colors.amber,
+            ),
+            const SizedBox(width: 5),
+            Text(
+              service.rating.toString(),
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+            const SizedBox(width: 5),
+            const Text(
+              "(With over 1k+ reviews)",
+              style: TextStyle(color: Colors.grey),
+            )
+          ],
+        )
+      ],
     );
   }
 }
@@ -167,8 +162,8 @@ class _CarCarouselState extends State<CarCarousel> {
 }
 
 class _CustomBottomSheet extends StatefulWidget {
-  ServiceModel service;
-  _CustomBottomSheet({
+  final ServiceModel service;
+  const _CustomBottomSheet({
     Key? key,
     required this.service,
   }) : super(key: key);
@@ -242,16 +237,14 @@ class __CustomBottomSheetState extends State<_CustomBottomSheet>
 }
 
 class SheetContainer extends StatelessWidget {
-  ServiceModel service;
-  SheetContainer({
+  final ServiceModel service;
+  const SheetContainer({
     Key? key,
     required this.service,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double sheetItemHeight = 110;
-
     return Container(
         padding: const EdgeInsets.only(top: 25),
         height: MediaQuery.of(context).size.height,
@@ -265,11 +258,13 @@ class SheetContainer extends StatelessWidget {
         child: Column(
           children: [
             drawerHandle(),
-            const Expanded(
+            Expanded(
               flex: 1,
               child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: AddServiceSchedule(),
+                padding: const EdgeInsets.all(8.0),
+                child: AddServiceSchedule(
+                  service: service,
+                ),
               ),
             )
           ],

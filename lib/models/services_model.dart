@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'package:hair_salon/models/appointment_model.dart';
+
 class ServiceModel {
   final String serviceName;
   final String originalPrice;
@@ -9,9 +11,8 @@ class ServiceModel {
   final String category;
   final String location;
   final int rating;
-  // apponitments
-  // category
   String imageUrl;
+  List<Appointment> appointments;
 
   ServiceModel({
     required this.serviceName,
@@ -22,6 +23,7 @@ class ServiceModel {
     required this.location,
     required this.rating,
     required this.imageUrl,
+    required this.appointments,
   });
 
   // Converts Map/ Json to ServiceModel
@@ -34,7 +36,8 @@ class ServiceModel {
       description: map["description"] ?? ' ',
       category: map["category"] ?? ' ', 
       location: map["location"] ?? ' ', 
-      rating: map["rating"] ?? 0,
+      rating: map["rating"] ?? 0, 
+      appointments: List<Appointment>.from(map['appointments']),
     );
   }
 
@@ -50,7 +53,8 @@ class ServiceModel {
       description: data["description"], 
       category: data["category"], 
       location: data["location"], 
-      rating: data["rating"],
+      rating: data["rating"], 
+      appointments: List<Appointment>.from(data["appointments"]),
     );
   }
 
@@ -63,7 +67,8 @@ class ServiceModel {
       "description" : description,
       "category" : category,
       "location" : location,
-      "rating" : rating
+      "rating" : rating,
+      "appointments": appointments,
     };
   }
 }

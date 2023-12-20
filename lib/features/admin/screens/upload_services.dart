@@ -236,6 +236,7 @@ class _UploadServicesState extends State<UploadServices> {
                       originalPrice: originalPriceController.text.trim(),
                       discountedPrice: discountedPriceController.text.trim(),
                       imageUrl: serviceImage.first.path,
+                      appointments: []
                     );
                     uploadServices(serviceModel);
                   },

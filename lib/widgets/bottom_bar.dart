@@ -6,7 +6,7 @@ import 'package:hair_salon/features/admin/screens/upload_services.dart';
 import 'package:hair_salon/features/category/screens/category_screen.dart';
 import 'package:hair_salon/features/chat/screens/chat_screen.dart';
 import 'package:hair_salon/features/home/screens/home_screen.dart';
-import 'package:hair_salon/features/schedule/screens/schedule_screen.dart';
+// import 'package:hair_salon/features/schedule/screens/schedule_screen.dart';
 
 class BottomBar extends StatefulWidget {
   final pageIndex;

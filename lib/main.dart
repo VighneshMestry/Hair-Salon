@@ -4,6 +4,7 @@ import 'package:hair_salon/features/auth/provider/auth_provider.dart';
 import 'package:hair_salon/features/auth/screens/get_started_screen.dart';
 import 'package:hair_salon/features/category/provider/category_provider.dart';
 import 'package:hair_salon/features/home/provider/home_provider.dart';
+import 'package:hair_salon/features/schedule/provider/appointment_provider.dart';
 import 'package:hair_salon/firebase_options.dart';
 import 'package:provider/provider.dart';
 
@@ -18,6 +19,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => HomeProvider()),
         ChangeNotifierProvider(create: (_) => CategoryProvider()),
+        ChangeNotifierProvider(create: (_) => AppointmentProvider()),
       ],
       child: const MyApp(),
     ),

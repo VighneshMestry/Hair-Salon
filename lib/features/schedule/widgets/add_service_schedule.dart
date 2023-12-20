@@ -1,15 +1,35 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
+import 'package:hair_salon/features/auth/provider/auth_provider.dart';
+import 'package:hair_salon/models/services_model.dart';
+import 'package:provider/provider.dart';
+
+import 'package:hair_salon/features/schedule/provider/appointment_provider.dart';
+import 'package:hair_salon/models/appointment_model.dart';
 
 class AddServiceSchedule extends StatefulWidget {
-  const AddServiceSchedule({super.key});
+  final ServiceModel service;
+  const AddServiceSchedule({
+    Key? key,
+    required this.service,
+  }) : super(key: key);
 
   @override
   State<AddServiceSchedule> createState() => _AddServiceScheduleState();
 }
 
 class _AddServiceScheduleState extends State<AddServiceSchedule> {
-  TimeOfDay time = TimeOfDay(hour: 12, minute: 00);
+  void addAppointment(Appointment appointment) async {
+    final appointmentProvider =
+        Provider.of<AppointmentProvider>(context, listen: false);
+    await appointmentProvider.addAppointment(appointment, context).whenComplete(
+          () => Navigator.of(context).pop(),
+        );
+    // ignore: use_build_context_synchronously
+  }
+
+  TimeOfDay time = const TimeOfDay(hour: 12, minute: 00);
   int noOfHours = 0;
 
   void pickTime() {
@@ -25,6 +45,7 @@ class _AddServiceScheduleState extends State<AddServiceSchedule> {
 
   @override
   Widget build(BuildContext context) {
+    final uid = Provider.of<AuthProvider>(context, listen: false).uid;
     List<DateTime?> _dates = [
       DateTime(2023, DateTime.now().month, DateTime.now().day)
     ];
@@ -36,7 +57,8 @@ class _AddServiceScheduleState extends State<AddServiceSchedule> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 25),
+            padding:
+                const EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 25),
             child: Container(
               decoration: BoxDecoration(
                   color: Colors.white,
@@ -155,7 +177,16 @@ class _AddServiceScheduleState extends State<AddServiceSchedule> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  // Navigator.of(context).push(MaterialPageRoute(builder: (context) => ScheduleScreen(service: service)));
+                  addAppointment(
+                    Appointment(
+                      service: widget.service,
+                      date: _dates[0]!,
+                      time: time,
+                      noOfHours: noOfHours,
+                      uid: uid,
+                    ),
+                  );
+                  // Navigator.of(context).pop();
                 },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue.shade600,
@@ -173,7 +204,9 @@ class _AddServiceScheduleState extends State<AddServiceSchedule> {
           ),
           const Align(
             alignment: Alignment.center,
-            child: Text("(Services available only on weekdays)",),
+            child: Text(
+              "(Services available only on weekdays)",
+            ),
           )
         ],
       ),
