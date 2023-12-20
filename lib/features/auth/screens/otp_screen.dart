@@ -184,7 +184,7 @@ class _OtpScreenState extends State<OtpScreen> {
 
   void storeData() async {
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
-    UserModel userModel = UserModel(phoneNumber: "", uid: "", createdAt: '', appointments: []);
+    UserModel userModel = UserModel(phoneNumber: "", uid: "", createdAt: '');
     authProvider.saveUserDataToFirebase(
         context: context,
         userModel: userModel,

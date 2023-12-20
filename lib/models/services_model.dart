@@ -12,7 +12,6 @@ class ServiceModel {
   final String location;
   final int rating;
   String imageUrl;
-  List<Appointment> appointments;
 
   ServiceModel({
     required this.serviceName,
@@ -23,7 +22,6 @@ class ServiceModel {
     required this.location,
     required this.rating,
     required this.imageUrl,
-    required this.appointments,
   });
 
   // Converts Map/ Json to ServiceModel
@@ -32,29 +30,28 @@ class ServiceModel {
       serviceName: map["serviceName"] ?? ' ',
       originalPrice: map["originalPrice"] ?? ' ',
       discountedPrice: map["discountedPrice"] ?? ' ',
-      imageUrl: map["imageUrl"] ?? ' ', 
+      imageUrl: map["imageUrl"] ?? ' ',
       description: map["description"] ?? ' ',
-      category: map["category"] ?? ' ', 
-      location: map["location"] ?? ' ', 
-      rating: map["rating"] ?? 0, 
-      appointments: List<Appointment>.from(map['appointments']),
+      category: map["category"] ?? ' ',
+      location: map["location"] ?? ' ',
+      rating: map["rating"] ?? 0,
     );
   }
 
   // Converts DocumentSnapshot(documentsnapshot in form of Map<String, dynamic>) provided by firebase to ServiceModel
   factory ServiceModel.fromSnapshot(
       DocumentSnapshot<Map<String, dynamic>> document) {
-    final data = document.data()!;  // Here the document.data() give the whole snapshot data to the us, but if we need only one field from the snapshot we can user document.get() instead
+    final data = document
+        .data()!; // Here the document.data() give the whole snapshot data to the us, but if we need only one field from the snapshot we can user document.get() instead
     return ServiceModel(
-      serviceName: data["serviceName"],
-      originalPrice: data["originalPrice"],
-      discountedPrice: data["discountedPrice"],
-      imageUrl: data["imageUrl"],
-      description: data["description"], 
-      category: data["category"], 
-      location: data["location"], 
-      rating: data["rating"], 
-      appointments: List<Appointment>.from(data["appointments"]),
+        serviceName: data["serviceName"],
+        originalPrice: data["originalPrice"],
+        discountedPrice: data["discountedPrice"],
+        imageUrl: data["imageUrl"],
+        description: data["description"],
+        category: data["category"],
+        location: data["location"],
+        rating: data["rating"],
     );
   }
 
@@ -64,11 +61,10 @@ class ServiceModel {
       "originalPrice": originalPrice,
       "discountedPrice": discountedPrice,
       "imageUrl": imageUrl,
-      "description" : description,
-      "category" : category,
-      "location" : location,
-      "rating" : rating,
-      "appointments": appointments,
+      "description": description,
+      "category": category,
+      "location": location,
+      "rating": rating,
     };
   }
 }
