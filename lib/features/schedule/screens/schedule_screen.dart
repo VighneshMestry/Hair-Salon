@@ -20,7 +20,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Padding(
-        padding: const EdgeInsets.only(top: 60),
+        padding: const EdgeInsets.only(top: 0),
         child: Stack(
           children: [
             CarDetails(
@@ -50,7 +50,7 @@ class CarDetails extends StatelessWidget {
       children: [
         CarCarousel(service: service),
         Container(
-          padding: const EdgeInsets.only(left: 30),
+          padding: const EdgeInsets.only(left: 30, top: 60),
           child: _carTitle(service),
         ),
       ],
@@ -147,7 +147,7 @@ class _CarCarouselState extends State<CarCarousel> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      height: 400,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
@@ -174,8 +174,8 @@ class _CustomBottomSheet extends StatefulWidget {
 
 class __CustomBottomSheetState extends State<_CustomBottomSheet>
     with SingleTickerProviderStateMixin {
-  double sheetTop = 200;
-  double minSheetTop = 50;
+  double sheetTop = 250;
+  double minSheetTop = 100;
 
   late Animation<double> animation;
   late AnimationController controller;

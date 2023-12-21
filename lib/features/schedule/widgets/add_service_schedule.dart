@@ -3,6 +3,7 @@ import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 import 'package:hair_salon/features/auth/provider/auth_provider.dart';
 import 'package:hair_salon/models/services_model.dart';
+import 'package:hair_salon/widgets/loader.dart';
 import 'package:provider/provider.dart';
 
 import 'package:hair_salon/features/schedule/provider/appointment_provider.dart';
@@ -20,12 +21,19 @@ class AddServiceSchedule extends StatefulWidget {
 }
 
 class _AddServiceScheduleState extends State<AddServiceSchedule> {
+  bool isLoading = false;
   void addAppointment(Appointment appointment) async {
+    setState(() {
+      isLoading = true;
+    });
     final appointmentProvider =
         Provider.of<AppointmentProvider>(context, listen: false);
     await appointmentProvider.addAppointment(appointment, context).whenComplete(
           () => Navigator.of(context).pop(),
         );
+    setState(() {
+      isLoading = false;
+    });
     // ignore: use_build_context_synchronously
   }
 
@@ -53,7 +61,7 @@ class _AddServiceScheduleState extends State<AddServiceSchedule> {
     TextEditingController _noOfHours = TextEditingController();
 
     return SingleChildScrollView(
-      child: Column(
+      child: isLoading ? const Loader() : Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(

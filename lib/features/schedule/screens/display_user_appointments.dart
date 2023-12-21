@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hair_salon/features/schedule/provider/appointment_provider.dart';
 import 'package:hair_salon/features/schedule/widgets/appointment_tile.dart';
 import 'package:hair_salon/models/appointment_model.dart';
+import 'package:hair_salon/widgets/loader.dart';
 import 'package:provider/provider.dart';
 
 class DisplayUserAppointments extends StatefulWidget {
@@ -14,11 +15,17 @@ class DisplayUserAppointments extends StatefulWidget {
 
 class _DisplayUserAppointmentsState extends State<DisplayUserAppointments> {
   List<Appointment> userAppointments = [];
+  bool isLoading = false;
   void getAllAppointments() async {
+    setState(() {
+      isLoading = true;
+    });
     final appointmentProvider =
         Provider.of<AppointmentProvider>(context, listen: false);
     userAppointments = await appointmentProvider.getAllAppointments();
-    setState(() {});
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
@@ -30,23 +37,27 @@ class _DisplayUserAppointmentsState extends State<DisplayUserAppointments> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(top: 60),
-            child: Text("My Appointments",
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20)),
-          ),
-          ListView.builder(
-            shrinkWrap: true,
-            scrollDirection: Axis.vertical,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: userAppointments.length,
-            itemBuilder: (context, index) => AppointmentTile(
-              appointment: userAppointments[index],
+      body: isLoading
+                ? const Loader()
+                : SingleChildScrollView(
+        child: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(top: 60),
+              child: Text("My Appointments",
+                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20)),
             ),
-          ),
-        ],
+            ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: userAppointments.length,
+                    itemBuilder: (context, index) => AppointmentTile(
+                      appointment: userAppointments[index],
+                    ),
+                  ),
+          ],
+        ),
       ),
     );
   }

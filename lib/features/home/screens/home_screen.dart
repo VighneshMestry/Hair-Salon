@@ -76,14 +76,33 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 IconButton(
                   onPressed: () {
-                    authProvider.userSignOut().then(
-                          (value) => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const GetStarted(),
-                            ),
-                          ),
-                        );
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: const Text("Do you want to LogOut??",
+                                style: TextStyle(fontSize: 20)),
+                            iconColor: Colors.blue,
+                            actions: [
+                              TextButton(
+                                  onPressed: () {
+                                    authProvider.userSignOut().then(
+                                          (value) => Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const GetStarted(),
+                                            ),
+                                          ),
+                                        );
+                                  },
+                                  child: const Text(
+                                    "LogOut",
+                                    style: TextStyle(color: Colors.blue),
+                                  ))
+                            ],
+                          );
+                        });
                   },
                   icon: const Icon(
                     Icons.exit_to_app,
