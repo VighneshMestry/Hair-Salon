@@ -181,7 +181,7 @@ class _AddServiceScheduleState extends State<AddServiceSchedule> {
                     Appointment(
                       service: widget.service,
                       date: _dates[0]!,
-                      time: time,
+                      time: time.toString(),
                       noOfHours: noOfHours,
                       uid: uid,
                     ),

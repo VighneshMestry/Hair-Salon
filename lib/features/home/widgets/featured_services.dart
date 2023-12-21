@@ -1,5 +1,6 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:hair_salon/features/auth/provider/auth_provider.dart';
 import 'package:hair_salon/features/home/provider/home_provider.dart';
 import 'package:hair_salon/features/home/widgets/service_card.dart';
 import 'package:hair_salon/features/home/widgets/service_details.dart';
@@ -18,6 +19,9 @@ class _FeaturedServicesState extends State<FeaturedServices> {
 
   void getAllServices() async {
     final homeProvider = Provider.of<HomeProvider>(context, listen: false);
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    print(authProvider.uid);
+    print("UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
     var tempServices = await homeProvider.getAllServices();
     setState(() {
       services = tempServices;

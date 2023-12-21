@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:hair_salon/constants/global_variables.dart';
 import 'package:hair_salon/features/admin/screens/upload_services.dart';
 import 'package:hair_salon/features/category/screens/category_screen.dart';
-import 'package:hair_salon/features/chat/screens/chat_screen.dart';
 import 'package:hair_salon/features/home/screens/home_screen.dart';
+import 'package:hair_salon/features/schedule/screens/display_user_appointments.dart';
 import 'package:hair_salon/features/schedule/screens/schedule_home_screen.dart';
 // import 'package:hair_salon/features/schedule/screens/schedule_screen.dart';
 
@@ -28,9 +28,8 @@ class _BottomBarState extends State<BottomBar> {
   List<Widget> pages = [
     const HomeScreen(),
     const CategoryScreen(),
-    // const ScheduleScreen(),
     const ScheduleHomeScreen(),
-    const ChatScreen(),
+    const DisplayUserAppointments(),
     const UploadServices(),
     // const CartScreen(),
   ];
@@ -133,7 +132,7 @@ class _BottomBarState extends State<BottomBar> {
                       ),
                     ),
                   ),
-                  child: const Icon(Icons.messenger_outline_rounded),
+                  child: const Icon(Icons.speaker_notes_outlined),
                 ),
                 label: '',
               ),

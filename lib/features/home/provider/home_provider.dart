@@ -36,6 +36,25 @@ class HomeProvider extends ChangeNotifier {
     }
   }
 
+  Future<List<ServiceModel>> getServiceByName(String serviceName) async {
+    try {
+      final services = await getAllServices();
+      List<ServiceModel> servicesByName = [];
+      if (serviceName.isNotEmpty) {
+        for (var items in services) {
+          if (items.serviceName.toLowerCase().contains(serviceName)) {
+            servicesByName.add(items);
+          }
+        }
+        return servicesByName;
+      } else {
+        return services;
+      }
+    } catch (e) {
+      throw (e.toString());
+    }
+  }
+
   Future<String> storeImagetoStorage(String ref, File file) async {
     try {
       UploadTask uploadTask = _firebaseStorage.ref().child(ref).putFile(file);
