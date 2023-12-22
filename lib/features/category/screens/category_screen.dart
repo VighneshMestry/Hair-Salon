@@ -26,7 +26,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CategoryTile(
-                  imageUrl: "assets/haircut.png", categoryName: "HairCut"),
+                  imageUrl: "assets/haircut.png", categoryName: "Hair Cut"),
               CategoryTile(
                   imageUrl: "assets/makeup.png", categoryName: "Makeup"),
               CategoryTile(

@@ -41,7 +41,8 @@ class _ScheduleHomeScreenState extends State<ScheduleHomeScreen> {
     return Scaffold(
       body: searchList.isEmpty
           ? const Loader()
-          : Padding(
+          : SingleChildScrollView(
+            child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 11),
               child: Column(
                 children: [
@@ -62,7 +63,7 @@ class _ScheduleHomeScreenState extends State<ScheduleHomeScreen> {
                     child: Row(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(8),
+                          padding: const EdgeInsets.all(4),
                           child: SearchBarAnimation(
                             textEditingController: _searchController,
                             isOriginalAnimation: true,
@@ -110,6 +111,7 @@ class _ScheduleHomeScreenState extends State<ScheduleHomeScreen> {
                 ],
               ),
             ),
+          )
     );
   }
 }
