@@ -23,7 +23,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
         padding: const EdgeInsets.only(top: 0),
         child: Stack(
           children: [
-            CarDetails(
+            ScheduleDetails(
               service: widget.service,
             ),
             _CustomBottomSheet(
@@ -36,9 +36,9 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
   }
 }
 
-class CarDetails extends StatelessWidget {
+class ScheduleDetails extends StatelessWidget {
   final ServiceModel service;
-  const CarDetails({
+  const ScheduleDetails({
     Key? key,
     required this.service,
   }) : super(key: key);
@@ -48,16 +48,16 @@ class CarDetails extends StatelessWidget {
     return Stack(
       // crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CarCarousel(service: service),
+        ServiceCarousel(service: service),
         Container(
           padding: const EdgeInsets.only(left: 30, top: 60),
-          child: _carTitle(service),
+          child: _serviceTitle(service),
         ),
       ],
     );
   }
 
-  _carTitle(ServiceModel service) {
+  _serviceTitle(ServiceModel service) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -132,18 +132,18 @@ class CarDetails extends StatelessWidget {
   }
 }
 
-class CarCarousel extends StatefulWidget {
+class ServiceCarousel extends StatefulWidget {
   final ServiceModel service;
-  const CarCarousel({
+  const ServiceCarousel({
     Key? key,
     required this.service,
   }) : super(key: key);
 
   @override
-  State<CarCarousel> createState() => _CarCarouselState();
+  State<ServiceCarousel> createState() => _ServiceCarouselState();
 }
 
-class _CarCarouselState extends State<CarCarousel> {
+class _ServiceCarouselState extends State<ServiceCarousel> {
   @override
   Widget build(BuildContext context) {
     return Container(
