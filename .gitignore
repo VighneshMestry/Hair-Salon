@@ -46,3 +46,6 @@ app.*.map.json
 /ios
 /linux
 /macosmo
+/test
+/macos
+/node_modules
