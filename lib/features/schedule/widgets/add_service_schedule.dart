@@ -55,7 +55,7 @@ class _AddServiceScheduleState extends State<AddServiceSchedule> {
   Widget build(BuildContext context) {
     final uid = Provider.of<AuthProvider>(context, listen: false).uid;
     List<DateTime?> _dates = [
-      DateTime(2023, DateTime.now().month, DateTime.now().day)
+      DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day)
     ];
 
     TextEditingController _noOfHours = TextEditingController();
@@ -93,7 +93,7 @@ class _AddServiceScheduleState extends State<AddServiceSchedule> {
                   _dates = dates;
                 },
                 onCancelTapped: () => _dates = [
-                  DateTime(2023, DateTime.now().month, DateTime.now().day)
+                  DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day)
                 ],
               ),
             ),
