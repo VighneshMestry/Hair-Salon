@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -9,6 +10,8 @@ import 'package:hair_salon/utils/custom_button.dart';
 import 'package:hair_salon/utils/custom_textfield.dart';
 import 'package:hair_salon/utils/utils.dart';
 import 'package:provider/provider.dart';
+
+import 'package:http/http.dart' as http;
 
 class UploadServices extends StatefulWidget {
   const UploadServices({super.key});
@@ -54,24 +57,34 @@ class _UploadServicesState extends State<UploadServices> {
     final homeProvider = Provider.of<HomeProvider>(context, listen: false);
     try {
       // Storing image to storage
-      await homeProvider
-          .storeImagetoStorage(
-              "serviceImage/${service.serviceName}", serviceImage[0])
-          .then((value) {
-        service.imageUrl = value;
-      });
+      // await homeProvider
+      //     .storeImagetoStorage(
+      //         "serviceImage/${service.serviceName}", serviceImage[0])
+      //     .then((value) {
+      //   service.imageUrl = value;
+      // });
 
-      // Storing data to firebase
-      await _firebaseFirestore
-          .collection("Services")
-          .add(service.toMap())
-          .whenComplete(
-            () => ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text("Service Added"),
-              ),
-            ),
-          );
+      // // Storing data to firebase
+      // await _firebaseFirestore
+      //     .collection("Services")
+      //     .add(service.toMap())
+      //     .whenComplete(
+      //       () => ScaffoldMessenger.of(context).showSnackBar(
+      //         const SnackBar(
+      //           content: Text("Service Added"),
+      //         ),
+      //       ),
+      //     );
+      http.Response response = await http.post(
+          Uri.parse("http://192.168.0.100:8000/services/uploadService"),
+          body: service.toJson());
+      if (response.statusCode == 200) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Service Added"),
+          ),
+        );
+      }
     } catch (e) {
       throw (e.toString());
     }

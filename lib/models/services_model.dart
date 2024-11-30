@@ -65,4 +65,30 @@ class ServiceModel {
       "rating": rating,
     };
   }
+
+  factory ServiceModel.fromJson(Map<String, dynamic> json) {
+    return ServiceModel(
+      serviceName: json["serviceName"] ?? ' ',
+      originalPrice: json["originalPrice"] ?? ' ',
+      discountedPrice: json["discountedPrice"] ?? ' ',
+      imageUrl: json["imageUrl"] ?? ' ',
+      description: json["description"] ?? ' ',
+      category: json["category"] ?? ' ',
+      location: json["location"] ?? ' ',
+      rating: json["rating"] ?? 0,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "serviceName": serviceName,
+      "originalPrice": originalPrice,
+      "discountedPrice": discountedPrice,
+      "imageUrl": imageUrl,
+      "description": description,
+      "category": category,
+      "location": location,
+      "rating": rating.toString(),
+    };
+  }
 }
