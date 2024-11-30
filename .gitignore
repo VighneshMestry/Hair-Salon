@@ -48,4 +48,4 @@ app.*.map.json
 /macosmo
 /test
 /macos
-/node_modules
+/server/node_modules
